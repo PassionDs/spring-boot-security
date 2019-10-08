@@ -8,20 +8,19 @@ import org.springframework.security.web.FilterInvocation;
 import org.springframework.security.web.access.intercept.FilterInvocationSecurityMetadataSource;
 
 import javax.servlet.*;
-import java.io.IOException;
 
 public class CustomFilterSecurityInterceptor extends AbstractSecurityInterceptor implements Filter {
     private static final Logger logger = Logger.getLogger(CustomFilterSecurityInterceptor.class);
     private FilterInvocationSecurityMetadataSource securityMetadataSource;
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) {
         FilterInvocation fi = new FilterInvocation(request, response, chain);
-        logger.debug("===="+fi.getRequestUrl());
+        logger.debug("====" + fi.getRequestUrl());
         invoke(fi);
     }
 
-    public void invoke(FilterInvocation fi) throws IOException, ServletException {
+    public void invoke(FilterInvocation fi) {
         InterceptorStatusToken token = super.beforeInvocation(fi);
         try {
             fi.getChain().doFilter(fi.getRequest(), fi.getResponse());
@@ -51,12 +50,14 @@ public class CustomFilterSecurityInterceptor extends AbstractSecurityInterceptor
         this.securityMetadataSource = smSource;
     }
 
+    @Override
     public void destroy() {
         // TODO Auto-generated method stub
 
     }
 
-    public void init(FilterConfig arg0) throws ServletException {
+    @Override
+    public void init(FilterConfig arg0) {
         // TODO Auto-generated method stub
 
     }

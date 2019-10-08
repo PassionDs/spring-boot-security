@@ -34,7 +34,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private SecuritySettings settings;
     @Autowired
     private CustomUserDetailsService customUserDetailsService;
-    @Autowired @Qualifier("dataSource")
+    @Autowired
+    @Qualifier("dataSource")
     private DataSource dataSource;
 
     @Override
@@ -65,19 +66,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
-    public JdbcTokenRepositoryImpl tokenRepository(){
+    public JdbcTokenRepositoryImpl tokenRepository() {
         JdbcTokenRepositoryImpl jtr = new JdbcTokenRepositoryImpl();
         jtr.setDataSource(dataSource);
         return jtr;
     }
 
     @Bean
-    public LoginSuccessHandler loginSuccessHandler(){
+    public LoginSuccessHandler loginSuccessHandler() {
         return new LoginSuccessHandler();
     }
 
     @Bean
-    public CustomFilterSecurityInterceptor customFilter() throws Exception{
+    public CustomFilterSecurityInterceptor customFilter() {
         CustomFilterSecurityInterceptor customFilter = new CustomFilterSecurityInterceptor();
         customFilter.setSecurityMetadataSource(securityMetadataSource());
         customFilter.setAccessDecisionManager(accessDecisionManager());
@@ -95,8 +96,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         return new CustomSecurityMetadataSource(settings.getUrlroles());
     }
 
-
-    private CsrfSecurityRequestMatcher csrfSecurityRequestMatcher(){
+    private CsrfSecurityRequestMatcher csrfSecurityRequestMatcher() {
         CsrfSecurityRequestMatcher csrfSecurityRequestMatcher = new CsrfSecurityRequestMatcher();
         List<String> list = new ArrayList<String>();
         list.add("/rest/");
