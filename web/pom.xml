@@ -12,6 +12,9 @@
     <artifactId>web</artifactId>
     <packaging>jar</packaging>
 
+    <properties>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>

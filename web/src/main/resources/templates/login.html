@@ -20,7 +20,7 @@
         <div class="loginBoxTop png"></div>
         <div class="loginBox png">
             <div th:if="${param.error}">
-                <input th:value="无效的用户或密码！" id="errorMsg" type="hidden"/>
+                <input th:value="无效的用户或密码!" id="errorMsg" type="hidden"/>
             </div>
             <div th:if="${param.logout}">
                 <input th:value="你已经退出！" id="errorMsg" type="hidden"/>
@@ -68,6 +68,7 @@
         </div>
     </div>
 </div>
+<!--/*@thymesVar id="errorMsg" type="java.lang.String"*/-->
 <input th:value="${errorMsg}" id="errorMsg" type="hidden"/>
 </body>
 </html>

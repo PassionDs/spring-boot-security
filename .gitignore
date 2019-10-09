@@ -1,0 +1,7 @@
+# Created by .ignore support plugin (hsz.mobi)
+/.idea/
+/mysql/target/
+/mysql/mysql.iml
+/web/target/
+/web/web.iml
+/spring-boot-security.iml

@@ -30,7 +30,8 @@ public class CustomAccessDecisionManager implements AccessDecisionManager {
             //need role
             String needRole = configAttribute.getAttribute();
             //user roles
-            for (GrantedAuthority ga : authentication.getAuthorities()) {
+            Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
+            for (GrantedAuthority ga : authorities) {
                 if (needRole.equals(ga.getAuthority())) {
                     return;
                 }
